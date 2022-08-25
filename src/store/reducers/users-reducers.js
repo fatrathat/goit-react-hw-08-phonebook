@@ -5,10 +5,10 @@ export const userLogin = createReducer(
   { name: '', email: '', token: '' },
   {
     [setLoginSuccess]: (state, { payload }) => {
-      const { user, token } = payload;
+      const { name, email, token } = payload;
 
-      state.email = user.email;
-      state.name = user.name;
+      state.email = email;
+      state.name = name;
       state.token = token;
     },
     [setCurrentSuccess]: (state, { payload }) => {

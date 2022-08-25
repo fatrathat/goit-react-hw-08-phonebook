@@ -1,6 +1,12 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setLoginSuccess } from '../../store/actions/users-actions';
+import { useAddUserMutation } from '../../store/userAPI';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const [addUser] = useAddUserMutation();
+
   const [email, setEmail] = useState('test.user@gmail.com');
   const [name, setName] = useState('Test User');
 
@@ -13,8 +19,9 @@ const LoginForm = () => {
 
   const submithandler = e => {
     e.preventDefault();
-    const credentials = { email, name };
-    console.log(credentials);
+    const credentials = { name, email };
+    dispatch(setLoginSuccess(credentials));
+    addUser(credentials);
     e.target.reset();
   };
 
