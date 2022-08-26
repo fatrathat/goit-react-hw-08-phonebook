@@ -1,27 +1,23 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setLoginSuccess } from '../../store/actions/users-actions';
-import { useAddUserMutation } from '../../store/userAPI';
+import { useLoginMutation } from '../../store/userAPI';
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
-  const [addUser] = useAddUserMutation();
+  const [login] = useLoginMutation();
 
-  const [email, setEmail] = useState('test.user@gmail.com');
-  const [name, setName] = useState('Test User');
+  const [email, setEmail] = useState('test.user.2@gmail.com');
+  const [password, setPassword] = useState('123456798');
 
   const changeEmailHandler = e => {
     setEmail(e.target.value);
   };
-  const changeNameHandler = e => {
-    setName(e.target.value);
+  const changePasswordHandler = e => {
+    setPassword(e.target.value);
   };
 
   const submithandler = e => {
     e.preventDefault();
-    const credentials = { name, email };
-    dispatch(setLoginSuccess(credentials));
-    addUser(credentials);
+    const credentials = { email, password };
+    login(credentials);
     e.target.reset();
   };
 
@@ -39,12 +35,12 @@ const LoginForm = () => {
           />
         </label>
         <label>
-          Name
+          Password
           <input
             type="text"
-            name="name"
-            onChange={changeNameHandler}
-            value={name}
+            name="password"
+            onChange={changePasswordHandler}
+            value={password}
             required
           />
         </label>

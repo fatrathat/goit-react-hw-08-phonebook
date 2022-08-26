@@ -1,19 +1,30 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { setLoginSuccess, setCurrentSuccess } from '../actions/users-actions';
+import { createSlice } from '@reduxjs/toolkit';
+import { getCurrentSuccess } from '../actions/users-actions';
+import { userAPI } from '../userAPI';
 
-export const userLogin = createReducer(
-  { name: '', email: '', token: '' },
-  {
-    [setLoginSuccess]: (state, { payload }) => {
-      const { name, email, token } = payload;
+const initialState = { name: '', email: '', token: '' };
 
-      state.email = email;
-      state.name = name;
-      state.token = token;
-    },
-    [setCurrentSuccess]: (state, { payload }) => {
+export const user = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    [getCurrentSuccess]: (state, { payload }) => {
       state.email = payload.email;
       state.name = payload.name;
     },
-  }
-);
+  },
+  extraReducers: builder => {
+    builder.addMatcher(
+      userAPI.endpoints.login.matchFulfilled,
+      (state, { payload }) => {
+        const { user, token } = payload;
+
+        state.email = user.email;
+        state.name = user.name;
+        state.token = token;
+      }
+    );
+  },
+});
+
+export default user.reducer;

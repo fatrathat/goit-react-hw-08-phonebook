@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useSignupMutation } from '../../store/userAPI';
 
 const SignupForm = () => {
+  const [signup] = useSignupMutation();
+
   const [email, setEmail] = useState('test.user@gmail.com');
   const [name, setName] = useState('Test User');
   const [password, setPassword] = useState('123456798');
@@ -17,8 +20,9 @@ const SignupForm = () => {
 
   const submithandler = e => {
     e.preventDefault();
-    const credentials = { email, name, password };
-    console.log(credentials);
+    const credentials = { name, email, password };
+    signup(credentials);
+
     e.target.reset();
   };
 
