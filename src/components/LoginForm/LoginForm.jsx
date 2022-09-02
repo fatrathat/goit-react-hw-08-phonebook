@@ -19,6 +19,9 @@ const LoginForm = () => {
 
   const submithandler = async e => {
     e.preventDefault();
+    if (!email || !password) {
+      return;
+    }
     const credentials = { email, password };
     await login(credentials);
     navigate('/contacts');

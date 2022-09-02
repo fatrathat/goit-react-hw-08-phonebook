@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
+import { useSelector } from 'react-redux';
+import { useCurrentUserQuery } from 'store/APIs/userAPI';
 
 // import styled from 'styled-components';
 
@@ -20,6 +22,12 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 // `;
 
 export const App = () => {
+  // const { token } = useSelector(state => state.user);
+  // useCurrentUserQuery(undefined, {
+  //   skip: !token,
+  // });
+  // console.log(token);
+
   return (
     <div>
       {/* <header>
