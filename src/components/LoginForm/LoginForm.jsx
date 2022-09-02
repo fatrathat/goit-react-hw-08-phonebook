@@ -55,7 +55,7 @@ const LoginForm = () => {
           noValidate
           autoComplete="off"
           size="small"
-          type="text"
+          type="password"
           name="password"
           onChange={changeHandler}
           value={password}
