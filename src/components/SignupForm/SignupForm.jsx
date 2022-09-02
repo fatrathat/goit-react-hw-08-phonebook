@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSignupMutation } from '../../store/userAPI';
+import { useSignupMutation } from '../../store/APIs/userAPI';
 
 const SignupForm = () => {
   const [signup] = useSignupMutation();

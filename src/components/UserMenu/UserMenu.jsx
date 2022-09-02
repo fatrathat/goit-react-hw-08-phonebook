@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useLogoutMutation } from 'store/userAPI';
+import { useLogoutMutation } from 'store/APIs/userAPI';
 
 const UserMenu = () => {
   const { token, email } = useSelector(state => state.user);
