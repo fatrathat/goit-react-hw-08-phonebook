@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
+import Container from '@mui/material/Container';
+
 const Contacts = lazy(() => import('../../pages/ContactsPage/ContactsPage'));
 const Login = lazy(() => import('../../pages/LoginPage/LoginPage'));
 const Register = lazy(() => import('../../pages/RegisterPage/RegisterPage'));
@@ -11,7 +13,7 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 
 export const App = () => {
   return (
-    <div>
+    <Container>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -21,6 +23,6 @@ export const App = () => {
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Suspense>
-    </div>
+    </Container>
   );
 };
