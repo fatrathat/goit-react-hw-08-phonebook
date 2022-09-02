@@ -11,11 +11,6 @@ const ContactForm = () => {
   const { data } = useGetContactsQuery();
   const [addContact] = useAddContactMutation();
 
-  const reset = () => {
-    setName('');
-    setNumber('');
-  };
-
   const changeHandler = e => {
     const { name, value } = e.target;
 
@@ -33,12 +28,12 @@ const ContactForm = () => {
       data.find(contact => contact.name.toLowerCase() === name.toLowerCase())
     ) {
       alert(`${name} is already in contacts`);
-      reset();
 
       return;
     }
 
     await addContact({ name, number });
+    e.target.reset();
   };
 
   return (

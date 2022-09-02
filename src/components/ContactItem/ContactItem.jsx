@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useDeleteContactMutation } from 'store/APIs/contactsAPI';
+import UpdateContactForm from 'components/UpdateContactForm/UpdateContactForm';
 
 const ContactItem = () => {
   const [deleteContact] = useDeleteContactMutation();
@@ -19,6 +20,7 @@ const ContactItem = () => {
         <button name="delete" type="text" onClick={() => deleteContact(id)}>
           delete
         </button>
+        <UpdateContactForm contactId={id} />
       </li>
     );
   });
