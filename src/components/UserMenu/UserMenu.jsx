@@ -1,17 +1,19 @@
 import { useSelector } from 'react-redux';
-import { useCurrentUserQuery, useLogoutMutation } from 'store/userAPI';
+import { useNavigate } from 'react-router-dom';
+import { useLogoutMutation } from 'store/userAPI';
 
 const UserMenu = () => {
-  const { token } = useSelector(state => state.user);
+  const { token, email } = useSelector(state => state.user);
   const [logout] = useLogoutMutation();
-  const { data } = useCurrentUserQuery();
+  const navigate = useNavigate();
 
   const onButtonClickHandler = e => {
     logout(token);
+    navigate('/');
   };
   return (
     <div>
-      {data && <p>Email: {data.email}</p>}
+      <p>Email: {email}</p>
       <button type="button" onClick={onButtonClickHandler}>
         Logout
       </button>

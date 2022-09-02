@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSignupMutation } from '../../store/userAPI';
 
 const SignupForm = () => {
@@ -8,21 +9,25 @@ const SignupForm = () => {
   const [name, setName] = useState('Test User');
   const [password, setPassword] = useState('123456798');
 
-  const changeEmailHandler = e => {
-    setEmail(e.target.value);
-  };
-  const changeNameHandler = e => {
-    setName(e.target.value);
-  };
-  const changePasswordHandler = e => {
-    setPassword(e.target.value);
+  const navigate = useNavigate();
+
+  const changeHandler = e => {
+    const { name, value } = e.target;
+
+    if (name === 'name') {
+      setName(value);
+    } else if (name === 'email') {
+      setEmail(value);
+    } else {
+      setPassword(value);
+    }
   };
 
   const submithandler = e => {
     e.preventDefault();
     const credentials = { name, email, password };
     signup(credentials);
-
+    navigate('/login');
     e.target.reset();
   };
 
@@ -34,7 +39,7 @@ const SignupForm = () => {
           <input
             type="email"
             name="email"
-            onChange={changeEmailHandler}
+            onChange={changeHandler}
             value={email}
             required
           />
@@ -44,7 +49,7 @@ const SignupForm = () => {
           <input
             type="text"
             name="name"
-            onChange={changeNameHandler}
+            onChange={changeHandler}
             value={name}
             required
           />
@@ -54,7 +59,7 @@ const SignupForm = () => {
           <input
             type="password"
             name="password"
-            onChange={changePasswordHandler}
+            onChange={changeHandler}
             value={password}
             required
           />

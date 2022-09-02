@@ -1,23 +1,27 @@
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useLoginMutation } from '../../store/userAPI';
 
 const LoginForm = () => {
   const [login] = useLoginMutation();
-
   const [email, setEmail] = useState('test.user.2@gmail.com');
   const [password, setPassword] = useState('123456798');
+  const navigate = useNavigate();
 
-  const changeEmailHandler = e => {
-    setEmail(e.target.value);
-  };
-  const changePasswordHandler = e => {
-    setPassword(e.target.value);
+  const changeHandler = e => {
+    const { name, value } = e.target;
+    if (name === 'email') {
+      setEmail(value);
+    } else {
+      setPassword(value);
+    }
   };
 
-  const submithandler = e => {
+  const submithandler = async e => {
     e.preventDefault();
     const credentials = { email, password };
-    login(credentials);
+    await login(credentials);
+    navigate('/contacts');
     e.target.reset();
   };
 
@@ -29,7 +33,7 @@ const LoginForm = () => {
           <input
             type="email"
             name="email"
-            onChange={changeEmailHandler}
+            onChange={changeHandler}
             value={email}
             required
           />
@@ -39,7 +43,7 @@ const LoginForm = () => {
           <input
             type="text"
             name="password"
-            onChange={changePasswordHandler}
+            onChange={changeHandler}
             value={password}
             required
           />
