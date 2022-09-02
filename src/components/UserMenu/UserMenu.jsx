@@ -7,14 +7,14 @@ const UserMenu = () => {
   const [logout] = useLogoutMutation();
   const navigate = useNavigate();
 
-  const onButtonClickHandler = e => {
+  const onLogoutClickHandler = () => {
     logout(token);
     navigate('/');
   };
   return (
     <div>
       <p>Email: {email}</p>
-      <button type="button" onClick={onButtonClickHandler}>
+      <button type="button" onClick={onLogoutClickHandler}>
         Logout
       </button>
     </div>
