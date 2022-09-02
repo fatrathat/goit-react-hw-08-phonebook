@@ -1,0 +1,19 @@
+.HomeContainer {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HomeContainer div {
+  width: 465px;
+}
+
+.HomeHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.HomeText {
+  text-align: center;
+}

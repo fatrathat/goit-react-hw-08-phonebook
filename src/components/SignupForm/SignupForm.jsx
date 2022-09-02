@@ -2,12 +2,16 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSignupMutation } from '../../store/APIs/userAPI';
 
+import styles from './style.module.css';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 const SignupForm = () => {
   const [signup] = useSignupMutation();
 
-  const [email, setEmail] = useState('test.user@gmail.com');
-  const [name, setName] = useState('Test User');
-  const [password, setPassword] = useState('123456798');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
@@ -32,39 +36,50 @@ const SignupForm = () => {
   };
 
   return (
-    <div>
+    <div className={styles.SignUpForm}>
       <form onSubmit={submithandler}>
-        <label>
-          Email
-          <input
-            type="email"
-            name="email"
-            onChange={changeHandler}
-            value={email}
-            required
-          />
-        </label>
-        <label>
-          Name
-          <input
-            type="text"
-            name="name"
-            onChange={changeHandler}
-            value={name}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            name="password"
-            onChange={changeHandler}
-            value={password}
-            required
-          />
-        </label>
-        <button type="submit">Signup</button>
+        <TextField
+          className={styles.SignUpInput}
+          id="outlined-basic"
+          label="Email"
+          noValidate
+          autoComplete="off"
+          size="small"
+          type="email"
+          name="email"
+          onChange={changeHandler}
+          value={email}
+          required
+        />
+        <TextField
+          className={styles.SignUpInput}
+          id="outlined-basic"
+          label="Name"
+          noValidate
+          autoComplete="off"
+          size="small"
+          type="text"
+          name="name"
+          onChange={changeHandler}
+          value={name}
+          required
+        />
+        <TextField
+          className={styles.SignUpInput}
+          id="outlined-basic"
+          label="Password"
+          noValidate
+          autoComplete="off"
+          size="small"
+          type="password"
+          name="password"
+          onChange={changeHandler}
+          value={password}
+          required
+        />
+        <Button type="submit" variant="contained">
+          Sign up
+        </Button>
       </form>
     </div>
   );

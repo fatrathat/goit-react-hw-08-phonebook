@@ -4,6 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { useUpdateContactMutation } from 'store/APIs/contactsAPI';
 
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import SaveIcon from '@mui/icons-material/Save';
+
+import styles from './style.module.css';
+
 const UpdateContactForm = ({ contactId }) => {
   const navigate = useNavigate();
   const contacts = useSelector(state => state.contacts.items);
@@ -35,32 +41,36 @@ const UpdateContactForm = ({ contactId }) => {
     <>
       {contacts && (
         <div>
-          <form onSubmit={submitHandler}>
-            <div>
-              <label>
-                Name
-                <input
-                  onChange={changeHandler}
-                  type="text"
-                  name="name"
-                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                  title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                />
-              </label>
-              <div className="ContactForm__control">
-                <label>
-                  Number
-                  <input
-                    onChange={changeHandler}
-                    type="tel"
-                    name="number"
-                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                  />
-                </label>
-              </div>
-              <button type="submit">Save</button>
-            </div>
+          <form className={styles.UpdateForm} onSubmit={submitHandler}>
+            <TextField
+              className={styles.UpdateInput}
+              id="outlined-basic"
+              label="Name"
+              variant="outlined"
+              size="small"
+              margin="dense"
+              onChange={changeHandler}
+              type="text"
+              name="name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            />
+            <TextField
+              className={styles.UpdateInput}
+              id="outlined-basic"
+              label="Phone number"
+              variant="outlined"
+              size="small"
+              margin="dense"
+              onChange={changeHandler}
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            />
+            <IconButton type="submit">
+              <SaveIcon />
+            </IconButton>
           </form>
         </div>
       )}

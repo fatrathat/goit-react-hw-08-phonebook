@@ -1,0 +1,9 @@
+.InputFilterContainer {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 30px 0;
+}
+
+.InputFilter {
+  width: 250px;
+}

@@ -2,10 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useLoginMutation } from '../../store/APIs/userAPI';
 
+import styles from './style.module.css';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+
 const LoginForm = () => {
   const [login] = useLoginMutation();
-  const [email, setEmail] = useState('test.user.2@gmail.com');
-  const [password, setPassword] = useState('123456798');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const changeHandler = e => {
@@ -29,29 +33,37 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={submithandler}>
-        <label>
-          Email
-          <input
-            type="email"
-            name="email"
-            onChange={changeHandler}
-            value={email}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="text"
-            name="password"
-            onChange={changeHandler}
-            value={password}
-            required
-          />
-        </label>
-        <button type="submit">Login</button>
+    <div className={styles.SignInFormContainer}>
+      <form className={styles.SignInForm} onSubmit={submithandler}>
+        <TextField
+          className={styles.SignInFormInput}
+          id="outlined-basic"
+          label="Email"
+          noValidate
+          autoComplete="off"
+          size="small"
+          type="email"
+          name="email"
+          onChange={changeHandler}
+          value={email}
+          required
+        />
+        <TextField
+          className={styles.SignInFormInput}
+          id="outlined-basic"
+          label="Password"
+          noValidate
+          autoComplete="off"
+          size="small"
+          type="text"
+          name="password"
+          onChange={changeHandler}
+          value={password}
+          required
+        />
+        <Button type="submit" variant="contained">
+          Sign In
+        </Button>
       </form>
     </div>
   );

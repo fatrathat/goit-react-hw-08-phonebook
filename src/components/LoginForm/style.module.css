@@ -1,0 +1,14 @@
+.SignInFormContainer {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SignInForm {
+  display: flex;
+  align-items: center;
+}
+
+.SignInFormInput {
+  margin-right: 10px;
+}

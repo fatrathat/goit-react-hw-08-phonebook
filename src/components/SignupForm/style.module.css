@@ -1,0 +1,10 @@
+.SignUpForm {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SignUpInput {
+  margin-right: 15px;
+}

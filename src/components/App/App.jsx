@@ -13,7 +13,7 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 
 export const App = () => {
   return (
-    <Container>
+    <Container maxWidth="md">
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
