@@ -27,7 +27,7 @@ const SignupForm = () => {
     e.preventDefault();
     const credentials = { name, email, password };
     signup(credentials);
-    navigate('/login');
+    navigate('/users/login');
     e.target.reset();
   };
 
